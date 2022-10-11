@@ -46,7 +46,7 @@
                             placeholder="Digite a idade">
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-warning ">Processar</button>
+                        <button type="submit" class="btn btn-warning ">Enviar ...</button>
                     </div>
 
                 </form>
@@ -59,7 +59,10 @@
         <div class="card m-5">
             <div class="card-body">
                 <!-- insira os elementos de saída aqui -->
-                <p id="resposta" class="text-center">Joãzinho pode assistir esse filme ?</p>
+                <p id="resposta" class="text-center">Joãzinho pode assistir esse filme ? <br>
+                    <span id="resposta-txt" class="fw-bold fs-1"></span>
+                </p>
+
 
             </div>
         </div>
@@ -80,16 +83,23 @@
     <script>
         var entrada = document.getElementById('entrada')
 
-        entrada.addEventListener('submit',  () =>{
-           let nomeFilme = document.getElementById ('filme').value
-           let classificacao = document.getElementById ('classificacao').value 
+        entrada.addEventListener('submit', (evt) => {
+            let nomeFilme = document.getElementById('filme').value
+            let classificacao = document.getElementById('classificacao').value
+
+            let respostaTxt  = document.getElementById('resposta-txt')
+
+            if (classificacao >= 18 ) {
+                respostaTxt. innerText = 'joãozinho você não pode ver esse filme'
+            } else {
+                respostaTxt. innerText = 'Pode entrar Joãozinho'
+            }
+
            
-           if(classificacao >=18) {
-               alert('joãozinho você não pode ver esse filme ')
-           } else {
-               alert('Pode entrar Joâozinho')
-           }
-        } )
+            /*evita a atualização da página no evento submit */
+            evt.preventDefault()
+        })
     </script>
 </body>
+
 </html>
